@@ -1,8 +1,6 @@
 package org.lesson.java.nation;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -12,14 +10,19 @@ public class Main {
         String password = "root";
 
         try (Connection conn = DriverManager.getConnection(url, user, password)) {
+            PreparedStatement sql = conn.prepareStatement("SELECT c.country_id, c.name, r.name, c2.name "
+                    + "FROM countries c "
+                    + "JOIN regions r ON c.region_id = r.region_id "
+                    + "JOIN continents c2 ON r.continent_id = c2.continent_id "
+                    + "ORDER BY c.name" );
+            ResultSet res = sql.executeQuery();
 
-            System.out.println("Connessione stabilita correttamente");
+            while(res.next()) {
+                System.out.println("ID: " + res.getInt(1) + " | Country: " + res.getString(2) + " | Region: " + res.getString(3) + " | Contintent: " + res.getString(4));
+            }
+            //System.out.println("Connessione stabilita correttamente");
         } catch (Exception e) {
-
-            System.out.println("Errore di connessione: " + e.getMessage());
+            System.err.println("\nError: " + e.getMessage());
         }
-
-        System.out.println("\n----------------------------------\n");
-        System.out.println("The end");
     }
 }
