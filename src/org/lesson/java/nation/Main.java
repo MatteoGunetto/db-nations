@@ -46,7 +46,7 @@ public class Main {
                 }
 
                 System.out.println("\n----------------------------------\n");
-                System.out.print("Type the ID of the nation you want more info's: ");
+                System.out.print("scrivi l'ID per maggiori informazioni: ");
                 System.out.println("\n\n----------------------------------\n");
 
                 int idGuess = Integer.parseInt(in.nextLine());
@@ -70,8 +70,8 @@ public class Main {
 
                 System.out.println("\n----------------------------------\n");
                 res2.next();
-                System.out.println("Details of Country: " + res2.getString(1));
-                System.out.print("Languages: ");
+                System.out.println("Stato: " + res2.getString(1));
+                System.out.print("Lingue: ");
 
                 int year = res2.getInt(4);
                 long population = res2.getLong(2);
@@ -87,8 +87,8 @@ public class Main {
                     counter++;
                 }
 
-                System.out.println("\nYear: " + year);
-                System.out.println("Population: " + population);
+                System.out.println("\nAnno: " + year);
+                System.out.println("Popolazione: " + population);
                 System.out.println("GDP (PIL): " + gdp + "$");
                 System.out.println("\n----------------------------------\n");
 
